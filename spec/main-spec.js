@@ -1,6 +1,5 @@
-const main = require('../main/main');
-
 describe('pos', function () {
+    // const main = require('../main/main');
     var allItems;
     var inputs;
 

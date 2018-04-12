@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "node run-tests.js"
+    "test": "jasmine-node --verbose spec"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,10 @@
     "url": "https://github.com/tws-stack/js-online-quiz-template/issues"
   },
   "homepage": "https://school.thoughtworks.cn",
-  "devDependencies": {
-    "jasmine": "^2.6.0"
+  "dependencies": {
+    "jasmine": "^3.1.0",
+    "jasmine-console-reporter": "^1.2.6",
+    "jasmine-node": "^1.14.5",
+    "nodejs": "0.0.0"
   }
 }
