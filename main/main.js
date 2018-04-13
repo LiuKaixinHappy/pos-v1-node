@@ -33,21 +33,52 @@ function get_items_info(items_and_count) {
     return items_info;
 }
 
-function printInventory(inputs) {
-    var expectText =
-        '***<没钱赚商店>购物清单***\n' +
-        '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n' +
-        '名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n' +
-        '名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)\n' +
-        '----------------------\n' +
-        '挥泪赠送商品：\n' +
-        '名称：雪碧，数量：1瓶\n' +
-        '名称：方便面，数量：1袋\n' +
-        '----------------------\n' +
-        '总计：51.00(元)\n' +
-        '节省：7.50(元)\n' +
-        '**********************';
-    console.log(expectText);
+function get_buy_two_one_free(items_info) {
+    let buy_two_one_free_items = db.loadPromotions()
+        .filter(item => item['type'] === 'BUY_TWO_GET_ONE_FREE');
+    let barcodes = buy_two_one_free_items[0]['barcodes'];
+    for (let item of items_info) {
+        if (item['barcode'] === barcodes.filter(x => x === item['barcode']).length !== 0) {
+            item['reduce'] = item['price'] * Math.floor(item['count'] / 3);
+        } else {
+            item['reduce'] = 0;
+        }
+    }
+    return items_info;
 }
 
-module.exports = {get_items_and_count, get_items_info, printInventory};
+function printInventory(inputs) {
+    let items_and_count = get_items_and_count(inputs);
+    let items_info = get_items_info(items_and_count);
+    let result_after_discount = get_buy_two_one_free(items_info);
+
+    let ticket_manifest = [];
+    let ticket_free_item = [];
+    let total = 0;
+    let reduce = 0;
+    for (let item of result_after_discount) {
+        ticket_manifest.push('名称：' + item['name']
+            + '，数量：' + item['count'] + item['unit']
+            + '，单价：' + item['price'].toFixed(2)
+            + '(元)，小计：' + (item['total'] - item['reduce']).toFixed(2) + '(元)\n');
+        total += item['total'] - item['reduce'];
+        if (item['reduce'] !== 0) {
+            ticket_free_item.push('名称：' + item['name']
+            + '，数量：' + (item['reduce'] / item['price']) + item['unit'] + '\n');
+            reduce += item['reduce'];
+        }
+    }
+    let ticket =
+        '***<没钱赚商店>购物清单***\n' +
+        ticket_manifest.join('') +
+        '----------------------\n' +
+        '挥泪赠送商品：\n' +
+        ticket_free_item.join('') +
+        '----------------------\n' +
+        '总计：' + total.toFixed(2) + '(元)\n' +
+        '节省：' + reduce.toFixed(2) + '(元)\n' +
+        '**********************';
+    console.log(ticket);
+}
+
+module.exports = {get_items_and_count, get_items_info, printInventory, get_buy_two_one_free};
