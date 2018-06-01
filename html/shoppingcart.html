@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        .items {
+            width: 100%;
+            text-align: center;
+        }
+
+        .each_bought {
+            background: #FECA40;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 850px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .each_bought img {
+            margin: 3px;
+            padding: 2px;
+            float: left;
+            width: 200px;
+            height: 220px;
+        }
+
+        .each_bought div {
+            float: left;
+            text-align: center;
+        }
+
+        .minus_btn {
+            margin: 100px 30px 30px 410px;
+            float: left;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        .add_btn {
+            margin: 100px 30px 30px;
+            float: left;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+
+        .each_bought p {
+            line-height: 200px;
+            float: left;
+            text-align: center;
+        }
+
+        #ok_img {
+            position: fixed;
+            bottom: 55px;
+            right: 28px;
+            width: 115px;
+            height: 115px;
+            opacity: 1;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            -moz-border-radius: 60px;
+            -webkit-border-radius: 60px;
+            border-radius: 60px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../main/datbase.js"></script>
+    <script src="../main/shoppingcart.js"></script>
+
+</head>
+<body>
+<div class="items">
+    <h1>没钱赚商店——购物车</h1>
+    <div id="bought_items">
+
+    </div>
+    <img id="ok_img"
+         src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527824357392&di=39152949e555c73b83d55d40ccab39b7&imgtype=0&src=http%3A%2F%2Fp8.qhimg.com%2Ft01b3d06ac41e0e0984.png">
+
+</div>
+</body>
+</html>

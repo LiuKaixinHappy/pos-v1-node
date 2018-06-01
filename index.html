@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>没钱赚商店</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        #feedback {
+            font-size: 1.4em;
+        }
+
+        #selectable .ui-selecting {
+            background: #FECA40;
+        }
+
+        #selectable .ui-selected {
+            background: white;
+            color: black;
+        }
+
+        #selectable {
+            background: #FECA40;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 850px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #selectable li {
+            margin: 3px;
+            padding: 2px;
+            float: left;
+            width: 200px;
+            height: 270px;
+        }
+
+        .item_img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .item_info {
+            margin-top: 3px;
+            float: left;
+        }
+
+        .item_info .item_price {
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+            line-height: 50px; /*设置line-height与父级元素的height相等*/
+            text-align: center; /*设置文本水平居中*/
+            overflow: hidden; /*防止内容超出容器或者产生自动换行*/
+            float: left;
+        }
+
+        .items {
+            width: 100%;
+            text-align: center;
+        }
+
+        #shopping_cart {
+            position: fixed;
+            bottom: 50px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.75;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            -moz-border-radius: 60px;
+            -webkit-border-radius: 60px;
+            border-radius: 60px;
+        }
+
+        #shopping_cart img {
+            bottom: 50px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+            opacity: 0.75;
+            -moz-border-radius: 60px;
+            -webkit-border-radius: 60px;
+            border-radius: 60px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="main/index.js"></script>
+</head>
+<body>
+<div class="items">
+    <h1>没钱赚商店</h1>
+    <ol id="selectable">
+        <!--可乐-->
+        <li class="ui-state-default">
+            <img id="item_img_1" class="item_img"
+                 src="http://img13.360buyimg.com/n1/jfs/t9106/118/1224074555/262373/1fbcae6c/59b630c5N72bc62d6.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_1">¥3.00</div>
+            </div>
+        </li>
+        <!--雪碧-->
+        <li class="ui-state-default">
+            <img id="item_img_2" class="item_img"
+                 src="http://img14.360buyimg.com/n1/jfs/t3079/17/6384057111/256293/7cf053b5/58a5725cNc30a12af.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_2">¥3.00</div>
+            </div>
+        </li>
+        <!--苹果-->
+        <li class="ui-state-default">
+            <img id="item_img_3" class="item_img"
+                 src="https://img13.360buyimg.com/n1/jfs/t19228/277/1907092106/288812/9b2f5519/5add9a6dN190931f9.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_3">¥5.50</div>
+            </div>
+        </li>
+        <!--荔枝-->
+        <li class="ui-state-default">
+            <img id="item_img_4" class="item_img"
+                 src="https://img14.360buyimg.com/n1/jfs/t19540/189/2441815168/108605/f5cc3bfa/5af3d2faNa9dfcf72.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_4">¥15.00</div>
+            </div>
+        </li>
+        <!--电池-->
+        <li class="ui-state-default">
+            <img id="item_img_5" class="item_img"
+                 src="http://img10.360buyimg.com/n1/s450x450_jfs/t3556/262/227030927/183027/e96da1a3/58071793Nae015ad2.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_5">¥2.00</div>
+            </div>
+        </li>
+        <!--方便面-->
+        <li class="ui-state-default">
+            <img id="item_img_6" class="item_img"
+                 src="http://img11.360buyimg.com/n1/jfs/t2581/114/2846027310/190955/19385f4/5774eb54N0c8acc74.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_6">¥4.50</div>
+            </div>
+        </li>
+        <!--火龙果-->
+        <li class="ui-state-default">
+            <img id="item_img_7" class="item_img"
+                 src="http://img12.360buyimg.com/n1/jfs/t13237/317/1134597917/468148/f190ec91/5a51d12dN12494919.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_7">¥39.90</div>
+            </div>
+        </li>
+        <!--樱桃-->
+        <li class="ui-state-default">
+            <img id="item_img_8" class="item_img"
+                 src="http://img10.360buyimg.com/n1/jfs/t4483/305/3103622139/365759/2eefc61d/58f74fd6Ncde96127.jpg"/>
+            <div class="item_info">
+                <div class="item_price" id="item_price_8">¥156.00</div>
+            </div>
+        </li>
+    </ol>
+    <div id="shopping_cart" class="ui-state-default">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527772051235&di=e1842960a0c00d0d79262378520b7389&imgtype=0&src=http%3A%2F%2Flaishilu.com%2Fupfile%2F20177515549611743.jpg">
+    </div>
+</div>
+</body>
+</html>

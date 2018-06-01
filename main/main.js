@@ -1,4 +1,4 @@
-const db = require('../main/datbase');
+// const db = require('../main/datbase');
 
 function get_items_and_count(items_barcode) {
     let each_item_count = {};
@@ -14,7 +14,7 @@ function get_items_and_count(items_barcode) {
 }
 
 function get_items_info(items_and_count) {
-    let all_items = db.loadAllItems();
+    let all_items = loadAllItems();
     let items_info = [];
     for (let key in items_and_count) {
         all_items.filter(elem => {
@@ -34,7 +34,7 @@ function get_items_info(items_and_count) {
 }
 
 function get_buy_two_one_free(items_info) {
-    let buy_two_one_free_items = db.loadPromotions()
+    let buy_two_one_free_items = loadPromotions()
         .filter(item => item['type'] === 'BUY_TWO_GET_ONE_FREE');
     let barcodes = buy_two_one_free_items[0]['barcodes'];
     for (let item of items_info) {
@@ -69,16 +69,16 @@ function printInventory(inputs) {
         }
     }
     let ticket =
-        '***<没钱赚商店>购物清单***\n' +
-        ticket_manifest.join('') +
-        '----------------------\n' +
-        '挥泪赠送商品：\n' +
-        ticket_free_item.join('') +
-        '----------------------\n' +
-        '总计：' + total.toFixed(2) + '(元)\n' +
-        '节省：' + reduce.toFixed(2) + '(元)\n' +
-        '**********************';
-    console.log(ticket);
+        '<p>***<没钱赚商店>购物清单***</p>' +
+        ticket_manifest.join('<p>') +
+        '<p>----------------------</p>' +
+        '<p>挥泪赠送商品：</p>' +
+        ticket_free_item.join('<p>') +
+        '<p>----------------------</p>' +
+        '<p>总计：' + total.toFixed(2) + '(元)</p>' +
+        '<p>节省：' + reduce.toFixed(2) + '(元)</p>' +
+        '<p>**********************</p>';
+    return ticket;
 }
 
-module.exports = {get_items_and_count, get_items_info, printInventory, get_buy_two_one_free};
+// module.exports = {get_items_and_count, get_items_info, printInventory, get_buy_two_one_free};
